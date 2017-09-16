@@ -1,0 +1,1 @@
+export { default } from 'ember-data-cascade-delete/mixins/cascade-delete';
