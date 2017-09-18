@@ -1,4 +1,4 @@
-# ember-data-cascade-delete
+# ember-data-cascade-delete [![Build Status](https://travis-ci.org/miguelcobain/ember-data-cascade-delete.svg?branch=master)](https://travis-ci.org/miguelcobain/ember-data-cascade-delete) [![Ember Observer Score](http://emberobserver.com/badges/ember-data-cascade-delete.svg)](http://emberobserver.com/addons/ember-data-cascade-delete)
 
 Sometimes we have a "Composition" kind of relationship (per UML terms) where the lifecyle of one
 class is closely related to another.
@@ -6,7 +6,7 @@ class is closely related to another.
 Composition relationships represents a "part-whole" relationship such that class B is an integral part of class A.
 This relationship is typically used if objects of class A can't logically exist without having a class B object.
 
-E.g, if a `Human` model "has many" `Leg`s, we generally want to destroy the legs along with the Human.
+E.g, if a `Human` model "has many" `Leg`s, we want to destroy the legs if/when the Human is destroyed.
 
 For such cases, we need to "cascade delete" the related models along with the parent model.
 This addon provides a Mixin with this functionality for you to add to any adapter in your ember app.
