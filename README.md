@@ -53,7 +53,7 @@ Now when we call `human.destroyRecord()` the related records marked with `cascad
 will be unloaded *after* the main record is destroyed.
 
 Two things to note:
-- this **will work** with nested relationships, e.g a `Leg` could have a `hasMany` relationship to `Finger` add
+- this **will work** with nested relationships, e.g a `Leg` could have a `hasMany` relationship to `Finger` and
 those would also be unloaded.
 - beware of circular relationships. If you define `cascadeDelete: true` on both ends of a relationship, you will get infinite loops.
 
