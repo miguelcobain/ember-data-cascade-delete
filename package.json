@@ -1,6 +1,6 @@
 {
   "name": "ember-data-cascade-delete",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Cascade delete your relationships",
   "keywords": [
     "ember-addon",
