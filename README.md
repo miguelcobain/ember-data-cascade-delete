@@ -25,11 +25,11 @@ If we want to add this feature globally, we add the Mixin to the application ada
 
 ```js
 // app/adapters/application.js
-import DS from 'ember-data';
+import JSONAPIAdapter from '@ember-data/adapter/json-api';
 import CascadeDeleteMixin from 'ember-data-cascade-delete';
 
-export default DS.JSONAPIAdapter.extend(CascadeDeleteMixin, {
-});
+export default class ApplicationAdapter extends JSONAPIAdapter.extend(CascadeDeleteMixin) {
+}
 ```
 
 You can also add this mixin to any other more specific (model-scoped) adapter.
@@ -38,15 +38,18 @@ Now we can specify a `cascadeDelete` option in our relationships like:
 
 ```js
 // app/models/human.js
-import Model from 'ember-data/model';
-import attr from 'ember-data/attr';
-import { hasMany, belongsTo } from 'ember-data/relationships';
+import Model, { attr, belongsTo, hasMany } from '@ember-data/model';
 
-export default Model.extend({
-  name: attr('string'),
-  heart: belongsTo('heart', { async: true, inverse: 'human', cascadeDelete: true }),
-  legs: hasMany('leg', { async: true, inverse: 'human', cascadeDelete: true })
-});
+export default class Human extends Model {
+  @attr('string')
+  name;
+
+  @belongsTo('heart', { async: true, inverse: 'human', cascadeDelete: true })
+  heart;
+
+  @hasMany('leg', { async: true, inverse: 'human', cascadeDelete: true })
+  legs;
+}
 ```
 
 Now when we call `human.destroyRecord()` the related records marked with `cascadeDelete: true`

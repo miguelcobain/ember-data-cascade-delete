@@ -1,5 +1,5 @@
-import DS from 'ember-data';
+import JSONAPIAdapter from '@ember-data/adapter/json-api';
 import CascadeDeleteMixin from 'ember-data-cascade-delete';
 
-export default DS.JSONAPIAdapter.extend(CascadeDeleteMixin, {
-});
+export default class ApplicationAdapter extends JSONAPIAdapter.extend(CascadeDeleteMixin) {
+}

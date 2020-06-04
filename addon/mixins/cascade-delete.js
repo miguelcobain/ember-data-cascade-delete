@@ -1,5 +1,6 @@
 import Mixin from '@ember/object/mixin';
 
+// eslint-disable-next-line ember/no-new-mixins
 export default Mixin.create({
   deleteRecord(store, _, snapshot) {
     let recordsToUnload = this.unloadCascadeRecords(store, snapshot.record);
@@ -15,7 +16,7 @@ export default Mixin.create({
 
   unloadCascadeRecords(store, record) {
     let recordsToUnload = [];
-    
+
     // collect all records to unload into recordsToUnload variable
     record.eachRelationship((name, descriptor) => {
       let { options, kind } = descriptor;
@@ -32,7 +33,9 @@ export default Mixin.create({
 
       if (options.cascadeDelete && kind === 'belongsTo') {
         let belongsToRecords = record.belongsTo(relationshipName).value();
-        recordsToUnload = recordsToUnload.concat([ belongsToRecords ]);
+        if (belongsToRecords !== null) {
+          recordsToUnload = recordsToUnload.concat([ belongsToRecords ]);
+        }
       }
     });
 

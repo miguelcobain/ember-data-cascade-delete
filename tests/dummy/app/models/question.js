@@ -1,9 +1,12 @@
-import Model from 'ember-data/model';
-import attr from 'ember-data/attr';
-import { belongsTo, hasMany } from 'ember-data/relationships';
+import Model, { attr, belongsTo, hasMany } from '@ember-data/model';
 
-export default Model.extend({
-  text: attr('string'),
-  form: belongsTo('form', { async: true, inverse: 'questions' }),
-  options: hasMany('option', { async: true, inverse: 'question', cascadeDelete: true })
-});
+export default class Question extends Model {
+  @attr('string')
+  text;
+
+  @belongsTo('form', { async: true, inverse: 'questions' })
+  form;
+
+  @hasMany('option', { async: true, inverse: 'question', cascadeDelete: true })
+  options;
+}

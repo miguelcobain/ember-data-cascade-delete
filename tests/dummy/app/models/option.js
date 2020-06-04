@@ -1,8 +1,9 @@
-import Model from 'ember-data/model';
-import attr from 'ember-data/attr';
-import { belongsTo } from 'ember-data/relationships';
+import Model, { attr, belongsTo } from '@ember-data/model';
 
-export default Model.extend({
-  text: attr('string'),
-  question: belongsTo('question', { async: true, inverse: 'options' })
-});
+export default class Option extends Model {
+  @attr('string')
+  text;
+
+  @belongsTo('question', { async: true, inverse: 'options' })
+  question;
+}
